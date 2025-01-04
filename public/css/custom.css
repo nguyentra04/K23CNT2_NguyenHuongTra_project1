@@ -1,0 +1,8 @@
+.erorr-message {
+    color: red;
+}
+
+input::placeholder {
+    font-size: 13px;
+    color: gray;
+}
