@@ -76,7 +76,7 @@ class NHTQuanTriController extends Controller
 
     public function NHTCreate()
     {
-        return view('NHTadmins.NHTQuanTri.NHTCreate');
+        return view('NHTadmins.NHTQuanTri.NHTCreate',['nhtquantri'=>$nhtquantri]);
     }
     //store
     public function NHTCreateSubmit(request $request)

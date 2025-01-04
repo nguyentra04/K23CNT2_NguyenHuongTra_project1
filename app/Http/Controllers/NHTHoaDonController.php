@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\NHTHoaDon;
 use Illuminate\Http\Request;
 
@@ -10,7 +9,7 @@ class NHTHoaDonController extends Controller
     public function NHTList()
     {
         $NHTHoaDon = NHTHoaDon::all();
-        return view('NHTadmins.NHTHoaDon.NHTList', compact('NHTHoaDon'));
+        return view('NHTadmins.NHTHoaDon.NHTList',['NHTHoaDon'=>$NHTHoaDon]);
     }
 
     public function NHTcreate()
@@ -44,7 +43,7 @@ class NHTHoaDonController extends Controller
     public function NHTEdit($id)
     {
         $NHTHoaDon = NHTHoaDon::findOrFail($id);
-        return view('NHTadmins.NHTHoaDon.NHTEdit', compact('NHTHoaDon'));
+        return view('NHTadmins.NHTHoaDon.NHTEdit');
     }
 
     public function NHTEditSubmit(Request $request, $id)

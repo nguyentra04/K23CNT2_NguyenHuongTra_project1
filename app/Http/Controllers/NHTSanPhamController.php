@@ -12,7 +12,7 @@ class NHTSanPhamController extends Controller
     public function NHTList()
     {
         $nhtsp = NHT_SanPham::all();
-        return view('NHTadmins.NHTSanPham.NHTList', compact('nhtsp'));
+        return view('NHTadmins.NHTSanPham.NHTList',['nhtsp'=>$nhtsp]);
     }
 
     // Create product
@@ -49,7 +49,7 @@ class NHTSanPhamController extends Controller
     public function NHTEdit($id)
     {
         $nhtsp = NHT_SanPham::find($id);
-        return view('NHTadmins.NHTSanPham.NHTEdit', compact('nhtsp'));
+        return view('NHTadmins.NHTSanPham.NHTEdit');
     }
 
     public function NHTEditSubmit(Request $request)
@@ -92,25 +92,5 @@ class NHTSanPhamController extends Controller
         $nhtsp->delete();
 
         return redirect()->route('NHTadmins.NHTSanPham.NHTList')->with('success', 'Xóa sản phẩm thành công');
-    }
-
-    public function NHTIndex()
-    {
-        $nhtsp = NHT_SanPham::all();
-        return view('NHTadmins.NHTSanPham.NHTIndex', compact('nhtsp'));
-    }
-
-    // Hiển thị chi tiết sản phẩm
-    public function NHTDetails($id)
-    {
-        $nhtsp = NHT_SanPham::findOrFail($id);
-        return view('NHTadmins.NHTSanPham.NHTDetails', compact('nhtsp'));
-    }
-
-    // Trang quản trị sản phẩm
-    public function NHTAdmin()
-    {
-        $nhtsp = NHT_SanPham::all();
-        return view('NHTadmins.NHTSanPham.NHTIndex', compact('nhtsp'));
     }
 }

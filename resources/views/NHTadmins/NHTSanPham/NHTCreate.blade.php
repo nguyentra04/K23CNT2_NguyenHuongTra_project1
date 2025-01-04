@@ -56,7 +56,7 @@
                             <label for="NHTMaLoai" class="col-sm-2 col-form-label">Mã Loại </label>
                             <div class="col-sm-10">
                               <select name="NHTMaLoai" id="NHTMaLoai" disabled="disabled">
-                                @foreach($nhtloaisp as $item)
+                                @foreach($nhtloaisps as $item)
                                   <option value="{{$item->NHTMaLoai}}">{{$item->NHTTenLoai}}</option>
                   
                                 @endforeach

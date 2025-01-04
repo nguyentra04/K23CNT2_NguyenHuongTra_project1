@@ -22,7 +22,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($nhtloaisp as $item)
+                    @forelse ($nhtloaisps as $item)
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $item->NHTMaLoai }}</td>

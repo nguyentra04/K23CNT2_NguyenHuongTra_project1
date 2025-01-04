@@ -5,9 +5,9 @@
    <div class="container border">
     <div class="row">
         <div class="col">
-            <form action="{{ route('NHTadmins.NHTLoaiSanPham.NHTEditSubmit',['id' => $nhtloaisp->id]) }}" method="post">
+            <form action="{{ route('NHTadmins.NHTLoaiSanPham.NHTEditSubmit')}}" method="post">
                 @csrf
-                <input type="hidden" name="id" id="id" value="{{ $nhtloaisp->id}}">
+                <input type="hidden" name="id" id="id" value="{{ $nhtloaisps->id}}">
                 <div class="card">
                     <div class="card-header">
                         <h2> Sửa thông tin loại sản phẩm  </h2>
@@ -28,7 +28,7 @@
                             <label for="NHTTenLoai" class="col-sm-2 col-form-label">Tên Loại</label>
                             <div class="col-sm-10">
                               <input type="text" class="form-control"
-                               value="{{ $nhtloaisps->NHTTenLoai }}"
+                               value="{{nhtloaisps->NHTTenLoai }}"
                                id="NHTMaLoai" name="NHTTenLoai">
                             @error('NHTTenLoai')
                                 <span class="text-danger">{{ $message }}</span>

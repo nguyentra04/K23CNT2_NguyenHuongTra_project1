@@ -10,8 +10,8 @@ class NHTLoaiSanPhamController extends Controller
     // List all product categories
     public function NHTList()
     {
-        $nhtloaisp = NHT_Loai_SP::all();
-        return view('NHTadmins.NHTLoaiSanPham.NHTList', compact('nhtloaisp'));
+        $nhtloaisps = NHT_Loai_SP::all();
+        return view('NHTadmins.NHTLoaiSanPham.NHTList', ['nhtloaisps' => $nhtloaisps]);
     }
 
     // Show the create product category form
@@ -27,16 +27,16 @@ class NHTLoaiSanPhamController extends Controller
             'NHTTrangThai' => 'required',
         ]);
 
-        $nhtloaisp = new NHT_Loai_SP();
-        $nhtloaisp->NHTMaLoai = $request->input('NHTMaLoai');
-        $nhtloaisp->NHTTenLoai = $request->input('NHTTenLoai');
-        $nhtloaisp->NHTTrangThai = $request->input('NHTTrangThai');
-        $nhtloaisp->save();
+        $nhtloaisps = new NHT_Loai_SP();
+        $nhtloaisps->NHTMaLoai = $request->input('NHTMaLoai');
+        $nhtloaisps->NHTTenLoai = $request->input('NHTTenLoai');
+        $nhtloaisps->NHTTrangThai = $request->input('NHTTrangThai');
+        $nhtloaisps->save();
         return redirect()->route('NHTLoaiSanPham.NHTList');
     }
     public function NHTEdit($id)
     {
-        return view('NHTadmins.NHTLoaiSanPham.NHTEdit', compact('nhtloaisp'));
+        return view('NHTadmins.NHTLoaiSanPham.NHTEdit',['nhtloaisps'=>$nhtloaisps]);
     }
     public function NHTEditSubmit(Request $request, $id)
     {
@@ -45,17 +45,17 @@ class NHTLoaiSanPhamController extends Controller
             'NHTTenLoai' => 'required',
             'NHTTrangThai' => 'required',
         ]);
-        $nhtloaisp = NHT_Loai_SP::find($id);
-        $nhtloaisp->NHTMaLoai = $request->input('NHTMaLoai');
-        $nhtloaisp->NHTTenLoai = $request->input('NHTTenLoai');
-        $nhtloaisp->NHTTrangThai = $request->input('NHTTrangThai');
-        $nhtloaisp->save();
+        $nhtloaisps = NHT_Loai_SP::find($id);
+        $nhtloaisps->NHTMaLoai = $request->input('NHTMaLoai');
+        $nhtloaisps->NHTTenLoai = $request->input('NHTTenLoai');
+        $nhtloaisps->NHTTrangThai = $request->input('NHTTrangThai');
+        $nhtloaisps->save();
         return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList');
     }
     public function NHTDelete($id)
     {
-        $nhtloaisp = NHT_Loai_SP::find($id);
-        $nhtloaisp->delete();
+        $nhtloaisps = NHT_Loai_SP::find($id);
+        $nhtloaisps->delete();
         return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList');
     }
 }

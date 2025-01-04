@@ -11,15 +11,16 @@ class NHTCTHoaDonController extends Controller
 {
     public function NHTCTList()
     {
-        $NHTCTHoaDon = NHTCTHoaDon::with(['NHTHoaDon', 'NHTSanPham'])->get();
-        return view('NHTadmins.NHTCTHoaDon.NHTCTList', compact('NHTCTHoaDon'));
+        $NHTCTHoaDon = NHTCTHoaDon::all();
+        return view('NHTadmins.NHTCTHoaDon.NHTCTList', ['NHTCTHoaDon' => $NHTCTHoaDon]);
     }
 
     public function NHTCTCreate()
     {
         $NHTHoaDon = NHTHoaDon::all();
-        $NHTSanPham = NHT_SanPham::all();
-        return view('NHTadmins.NHTCTHoaDon.NHTCTCreate', compact('NHTHoaDon', 'NHTSanPham'));
+        $NHT_SanPham = NHT_SanPham::all();
+        return view('NHTadmins.NHTCTHoaDon.NHTCTCreate', ['NHT_SanPham' => $NHT_SanPham]);
+        
     }
 
     public function NHTCTCreateSubmit(Request $request)
@@ -32,18 +33,17 @@ class NHTCTHoaDonController extends Controller
             'NHTThanhTien' => 'required|numeric|min:0',
             'NHTTrangThai' => 'required|boolean',
         ]);
-
         NHTCTHoaDon::create($request->all());
-        return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('success', 'Chi tiết hóa đơn đã được thêm thành công.');
+        return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('success', 'Chi tiết hóa đơn đã được tạo thành công.');
     }
 
     public function NHTCTEdit($id)
     {
-        $NHTCTHoaDon = NHTCTHoaDon::findOrFail($id);
+        $NHTCTHoaDon = NHTCTHoaDon::find($id);
         $NHTHoaDon = NHTHoaDon::all();
-        $NHTSanPham = NHT_SanPham::all();
-        return view('NHTadmins.NHTCTHoaDon.NHTCTEdit', compact('NHTCTHoaDon', 'NHTHoaDon', 'NHTSanPham'));
-    }
+        $NHT_SanPham = NHT_SanPham::all();
+        return view('NHTadmins.NHTCTHoaDon.NHTCTEdit', ['NHTCTHoaDon' => $NHTCTHoaDon, 'NHTHoaDon' => $NHTHoaDon, 'NHT_SanPham' => $NHT_SanPham]);
+        }
 
     public function NHTCTEditSubmit(Request $request, $id)
     {
@@ -54,17 +54,16 @@ class NHTCTHoaDonController extends Controller
             'NHTDonGiaMua' => 'required|numeric|min:0',
             'NHTThanhTien' => 'required|numeric|min:0',
             'NHTTrangThai' => 'required|boolean',
-        ]);
-
-        $NHTCTHoaDon = NHTCTHoaDon::findOrFail($id);
-        $NHTCTHoaDon->update($request->all());
-        return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('success', 'Chi tiết hóa đơn đã được cập nhật thành công.');
+            ]);
+        NHTCTHoaDon::find($id)->update($request->all());
+        return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('success', 'Chi tiết hóa đơn đã được cập nhật.');
     }
+    
 
     public function NHTCTDelete($id)
     {
-        $NHTCTHoaDon = NHTCTHoaDon::findOrFail($id);
-        $NHTCTHoaDon->delete();
+        NHTCTHoaDon::find($id)->delete();
         return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('success', 'Chi tiết hóa đơn đã được xóa.');
     }
+    
 }

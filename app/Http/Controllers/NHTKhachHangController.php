@@ -11,7 +11,7 @@ class NHTKhachHangController extends Controller
     public function NHTList()
     {
         $nhtkh = NHTKhachHang::all();
-        return view('NHTadmins.NHTKhachHang.NHTList', compact('nhtkh'));
+        return view('NHTadmins.NHTKhachHang.NHTList', ['nhtkh' => $nhtkh]);
     }
 
     // Show create customer form
@@ -52,7 +52,7 @@ class NHTKhachHangController extends Controller
     public function NHTEdit($id)
     {
         $nhtkh = NHTKhachHang::find($id);
-        return view('NHTadmins.NHTKhachHang.NHTEdit', compact('nhtkh'));
+        return view('NHTadmins.NHTKhachHang.NHTEdit', ['nhtkh' => $nhtkh]);
     }
 
     // Handle customer edit submission
