@@ -4,7 +4,7 @@
 
 @section('content-body')
     <h1>Danh sách hóa đơn</h1>
-    <a href="{{ route('NHTadmins.NHTHoaDon.NHTCTCreateSubmit') }}" class="btn btn-primary">Thêm mới</a>
+    <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTCreateSubmit') }}" class="btn btn-primary">Thêm mới</a>
     <table class="table mt-4">
         <thead>
             <tr>
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse ($NHTHoaDon as $item)
+            @forelse ($NHTCTHoaDon as $item)
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ $item->NHTMaHD }}</td>
@@ -29,8 +29,8 @@
                     <td class="text-center">{{ number_format($item->NHTTongTriGia, 0, ',', '.') }} đ</td>
                     <td class="text-center">{{ $item->NHTTrangThai ? 'Kích hoạt' : 'Không kích hoạt' }}</td>
                     <td class="text-center">
-                        <a href="{{ route('NHTadmins.NHTHoaDon.NHTEdit', $item->id) }}" class="btn btn-warning">Sửa</a>
-                        <a href="{{ route('NHTadmins.NHTHoaDon.NHTDelete', $item->id) }}" class="btn btn-danger" 
+                        <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTEdit', $item->id) }}" class="btn btn-warning">Sửa</a>
+                        <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTDelete', $item->id) }}" class="btn btn-danger" 
                             onclick="return confirm('Bạn có chắc muốn xóa không?')">Xóa</a>
                     </td>
                 </tr>

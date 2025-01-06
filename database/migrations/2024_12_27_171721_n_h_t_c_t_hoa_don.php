@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('NHTCTHoaDon', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('NHTHoaDonID')->referenses('id')->on('NHTHoaDon');
-            $table->bigInteger('NHTSanPhamID')->referenses('id')->on('NHTSanPham');
-            $table->Integer('NHTSoLuongMua');
+            $table->string('NHTHoaDonID')->referenses('id')->on('NHTHoaDon');
+            $table->string('NHTSanPhamID')->referenses('id')->on('NHTSanPham');
+            $table->float('NHTSoLuongMua');
             $table->float('NHTDonGiaMua');
             $table->float('NHTThanhTien');
             $table->tinyInteger('NHTTrangThai');

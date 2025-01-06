@@ -56,20 +56,20 @@
                             <label for="NHTMaLoai" class="col-sm-2 col-form-label">Mã Loại </label>
                             <div class="col-sm-10">
                               <select name="NHTMaLoai" id="NHTMaLoai" disabled="disabled">
-                                @foreach($nhtloaisps as $item)
-                                  <option value="{{$item->NHTMaLoai}}">{{$item->NHTTenLoai}}</option>
-                  
-                                @endforeach
+                                <select name="NHTMaLoai" id="NHTMaLoai">
+                                  @foreach($nhtloaisps as $item)
+                                      <option value="{{$item->NHTMaLoai}}">{{$item->NHTTenLoai}}</option>
+                                  @endforeach
                               </select>
                             </div>
                         <div class="mb-3 row">
                             <label for="NHTTrangThai" class="col-sm-2 col-form-label">Trạng Thái </label>
                             <div class="col-sm-10">
-                              <input type="radio"  id="NHTTrangThai1" name="NHTTrangThai" value='0'>
-                              <label for="NHTTrangThai1">Hiển thị </label>
+                              <input type="radio"  id="NHTTrangThai0" name="NHTTrangTha" value='0'>
+                              <label for="NHTTrangThai0">Hiển thị </label>
                                 &nbsp;
-                              <input type="radio"  id="NHTTrangThai0" name="NHTTrangThai" value='1'>
-                              <label for="NHTTrangThai0">Khóa</label>
+                              <input type="radio"  id="NHTTrangThai1" name="NHTTrangThai" value='1'>
+                              <label for="NHTTrangThai1">Khóa</label>
                             </div>
                         </div>
                     </div>

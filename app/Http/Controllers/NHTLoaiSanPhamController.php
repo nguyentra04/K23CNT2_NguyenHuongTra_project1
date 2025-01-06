@@ -34,24 +34,33 @@ class NHTLoaiSanPhamController extends Controller
         $nhtloaisps->save();
         return redirect()->route('NHTLoaiSanPham.NHTList');
     }
+    // Phương thức hiển thị form sửa thông tin loại sản phẩm
     public function NHTEdit($id)
     {
-        return view('NHTadmins.NHTLoaiSanPham.NHTEdit',['nhtloaisps'=>$nhtloaisps]);
+        $nhtloaisps = NHT_Loai_SP::findOrFail($id);
+        return view('NHTadmins.NHTLoaiSanPham.NHTEdit', ['nhtloaisps' => $nhtloaisps]);
     }
+
+
     public function NHTEditSubmit(Request $request, $id)
-    {
-        $validatedData = $request->validate([
-            'NHTMaLoai' => 'required',
-            'NHTTenLoai' => 'required',
-            'NHTTrangThai' => 'required',
-        ]);
-        $nhtloaisps = NHT_Loai_SP::find($id);
-        $nhtloaisps->NHTMaLoai = $request->input('NHTMaLoai');
-        $nhtloaisps->NHTTenLoai = $request->input('NHTTenLoai');
-        $nhtloaisps->NHTTrangThai = $request->input('NHTTrangThai');
-        $nhtloaisps->save();
-        return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList');
-    }
+{
+    $validatedData = $request->validate([
+        'NHTMaLoai' => 'required',
+        'NHTTenLoai' => 'required',
+        'NHTTrangThai' => 'required|in:0,1', // Kiểm tra giá trị hợp lệ
+    ]);
+
+    $nhtloaisps = NHT_Loai_SP::findOrFail($id);
+    $nhtloaisps->NHTMaLoai = $request->input('NHTMaLoai');
+    $nhtloaisps->NHTTenLoai = $request->input('NHTTenLoai');
+    $nhtloaisps->NHTTrangThai = $request->input('NHTTrangThai');
+    $nhtloaisps->save();
+
+    return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')->with('success', 'Cập nhật loại sản phẩm thành công');
+}
+
+
+
     public function NHTDelete($id)
     {
         $nhtloaisps = NHT_Loai_SP::find($id);

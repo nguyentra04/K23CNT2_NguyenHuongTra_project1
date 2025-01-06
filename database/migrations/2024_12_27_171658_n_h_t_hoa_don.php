@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('NHTHoaDon', function (Blueprint $table) {
             $table->id();
             $table->string('NHTMaHD',255)->unique();
-            $table->bigInteger('NHTMaKH')->references('id')->on('NHTKhachHang');
+            $table->string('NHTMaKH')->references('id')->on('NHTKhachHang');
             $table->date('NHTNgayHD');
             $table->string('NHTHoTenKH',255);
             $table->float('NHTTongTriGia');

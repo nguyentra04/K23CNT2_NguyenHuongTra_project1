@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('NHTMaSP',255)->unique();
             $table->string('NHTTenSP', 255);
             $table->string('NHTHinhAnh', 255);
-            $table->text('NHTMoTa')->nullable();
+            $table->string('NHTMoTa')->nullable();
             $table->float('NHTDonGia');
             $table->integer('NHTSoLuong')->default(100);
             $table->string('NHTMaLoai')->references('id')->on('NHTLoaiSanPham');

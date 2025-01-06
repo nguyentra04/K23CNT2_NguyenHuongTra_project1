@@ -24,14 +24,14 @@ class NHTKhachHangController extends Controller
     public function NHTCreateSubmit(Request $request)
     {
         $validate = $request->validate([
-            'NHTMaKH' => 'required',
-            'NHTTenKH' => 'required',
-            'NHTDiaChi' => 'required',
-            'NHTSDT' => 'required',
-            'NHTEmail' => 'required',
-            'NHTNgaySinh' => 'required',
-            'NHTGioiTinh' => 'required',
-            'NHTTrangThai' => 'required',
+            'NHTMaKH' => 'required|unique:NHTKhachHang,NHTMaKH',
+            'NHTTenKH' => 'required|string|max:255',
+            'NHTDiaChi' => 'required|string|max:255',
+            'NHTSDT' => 'required|regex:/^[0-9]{10}$/',
+            'NHTEmail' => 'required|email',
+            'NHTNgaySinh' => 'required|date',
+            'NHTGioiTinh' => 'required|in:Nam,Nữ',
+            'NHTTrangThai' => 'required|boolean',
         ]);
 
         $nhtkh = new NHTKhachHang;
@@ -51,7 +51,7 @@ class NHTKhachHangController extends Controller
     // Show edit form for a specific customer
     public function NHTEdit($id)
     {
-        $nhtkh = NHTKhachHang::find($id);
+        $nhtkh = NHTKhachHang::findOrFail($id);
         return view('NHTadmins.NHTKhachHang.NHTEdit', ['nhtkh' => $nhtkh]);
     }
 
@@ -59,17 +59,17 @@ class NHTKhachHangController extends Controller
     public function NHTEditSubmit(Request $request, $id)
     {
         $validate = $request->validate([
-            'NHTMaKH' => 'required | unique:NHTKhachHang,NHTMaKH,' . $id,
-            'NHTTenKH' => 'required',
-            'NHTDiaChi' => 'required',
-            'NHTSDT' => 'required',
-            'NHTEmail' => 'required',
-            'NHTNgaySinh' => 'required',
-            'NHTGioiTinh' => 'required',
-            'NHTTrangThai' => 'required',
+            'NHTMaKH' => 'required|unique:NHTKhachHang,NHTMaKH,' . $id,
+            'NHTTenKH' => 'required|string|max:255',
+            'NHTDiaChi' => 'required|string|max:255',
+            'NHTSDT' => 'required|regex:/^[0-9]{10}$/',
+            'NHTEmail' => 'required|email',
+            'NHTNgaySinh' => 'required|date',
+            'NHTGioiTinh' => 'required|in:Nam,Nữ',
+            'NHTTrangThai' => 'required|boolean',
         ]);
 
-        $nhtkh = NHTKhachHang::find($id);
+        $nhtkh = NHTKhachHang::findOrFail($id);
         $nhtkh->NHTMaKH = $request->NHTMaKH;
         $nhtkh->NHTTenKH = $request->NHTTenKH;
         $nhtkh->NHTDiaChi = $request->NHTDiaChi;
@@ -86,7 +86,7 @@ class NHTKhachHangController extends Controller
     // Delete a customer
     public function NHTDelete($id)
     {
-        $nhtkh = NHTKhachHang::find($id);
+        $nhtkh = NHTKhachHang::findOrFail($id);
         $nhtkh->delete();
 
         return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('success', 'Xóa thành công');

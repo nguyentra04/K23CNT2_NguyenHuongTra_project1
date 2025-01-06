@@ -15,7 +15,7 @@
                     <div class="mb-3 row">
                         <label for="NHTHoaDonID" class="col-sm-2 col-form-label">Mã hóa đơn</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="NHTHoaDonID" name="NHTHoaDonID" value="{{ $NHTHoaDon->NHTHoaDonID }}">
+                            <input type="text" class="form-control" id="NHTHoaDonID" name="NHTHoaDonID" value="{{ $NHTHoaDon->id }}">
                             @error('NHTHoaDonID')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -60,15 +60,15 @@
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Trạng thái</label>
                         <div class="col-sm-10">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="NHTTrangThai1" name="NHTTrangThai" value="1" {{ $NHTHoaDon->NHTTrangThai == 1 ? 'checked' : '' }}>
-                                <label class="form-check-label" for="NHTTrangThai1">Hiển thị</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="NHTTrangThai0" name="NHTTrangThai" value="0" {{ $NHTHoaDon->NHTTrangThai == 0 ? 'checked' : '' }}>
-                                <label class="form-check-label" for="NHTTrangThai0">Khóa</label>
-                            </div>
+                            <input type="radio" id="NHTTrangThai0" name="NHTTrangThai" value="0" 
+                                {{ $NHTCTHoaDon->NHTTrangThai == 0 ? 'checked' : '' }}>
+                            <label for="NHTTrangThai0">Hiển thị</label>
+                            &nbsp;
+                            <input type="radio" id="NHTTrangThai1" name="NHTTrangThai" value="1" 
+                                {{ $NHTCTHoaDon->NHTTrangThai == 1 ? 'checked' : '' }}>
+                            <label for="NHTTrangThai1">Khóa</label>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="card-footer">
@@ -90,7 +90,7 @@
                         </div>
                       </div>
                     <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Lưu thay đổi</button>
-                    <a href="{{route('NHTadmins.NHTCTHoaDon.NHTList')}}" class="btn btn-secondary">Quay lại</a>
+                    <a href="{{route('NHTadmins.NHTCTHoaDon.NHTCTList')}}" class="btn btn-secondary">Quay lại</a>
                 </div>
             </div>
         </form>

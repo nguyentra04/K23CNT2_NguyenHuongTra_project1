@@ -47,6 +47,15 @@ body, html {
     display: flex;
     flex-direction: column;
 }
+.sidebar a {
+    color: #333;
+    display: block;
+    text-decoration: none;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
 
 /* Content Body */
 .content-body {

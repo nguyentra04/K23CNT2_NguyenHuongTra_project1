@@ -5,7 +5,7 @@
    <div class="container border">
     <div class="row">
         <div class="col">
-            <form action="{{ route('NHTadmins.NHTLoaiSanPham.NHTEditSubmit') }}" method="post">
+            <form action="{{ route('NHTadmins.NHTLoaiSanPham.NHTCreateSubmit') }}" method="post">
                 @csrf
                 <div class="card">
                     <div class="card-header">

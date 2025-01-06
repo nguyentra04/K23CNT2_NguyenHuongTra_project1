@@ -60,8 +60,8 @@
                         <div class="mb-3 row">
                             <label for="NHTTrangThai" class="col-sm-2 col-form-label">Trạng Thái </label>
                             <div class="col-sm-10">
-                              <input type="radio"  id="NHTTrangThai1" name="NHTTrangThai" value='0'>
-                              <label for="NHTTrangThai1">Hiển thị </label>
+                              <input type="radio"  id="NHTTrangThai0" name="NHTTrangThai" value='0'>
+                              <label for="NHTTrangThai0">Hiển thị </label>
                                 &nbsp;
                               <input type="radio"  id="NHTTrangThai0" name="NHTTrangThai" value='1'>
                               <label for="NHTTrangThai0">Khóa</label>
@@ -71,7 +71,7 @@
 
                     <div class="card-footer">
                         <button type="submit" class=" btn btn-success" >Lưu</button>
-                        <a href="{{route('NHTadmins.NHTCTHoaDon.NHTList')}}" class="btn btn-secondary">quay lai</a>
+                        <a href="{{route('NHTadmins.NHTCTHoaDon.NHTCTList')}}" class="btn btn-secondary">quay lai</a>
                     </div>
                 </div>
             </form>

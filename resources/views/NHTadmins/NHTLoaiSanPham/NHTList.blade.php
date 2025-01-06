@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Danh sách loại sản phẩm</h1>
-                <a href="{{route('NHTadmins.NHTLoaiSanPham.NHTCreateSubmit') }}" class="btn btn-success">Thêm mới</a>
+                <a href="{{ route('NHTadmins.NHTLoaiSanPham.NHTCreateSubmit') }}" class="btn btn-success">Thêm mới</a>
             </div>
         </div>
     </div>
@@ -27,20 +27,20 @@
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $item->NHTMaLoai }}</td>
                             <td>{{ $item->NHTTenLoai }}</td>
-                            <td>{{ $item->NHTTrangThai }}</td>
+                            <td>{{ $item->NHTTrangThai == 1 ? 'Hiển thị' : 'Khóa' }}</td>
                             <td>
-                                <a href="{{ route('NHTadmins.NHTLoaiSanPham.NHTEdit', $item->id) }}" class="btn btn-warning">Sửa</a>
+                                <a href="{{ route('NHTadmins.NHTLoaiSanPham.NHTEdit', $item->id) }}" class="btn btn-primary">Sửa</a>
                                 <a href="{{ route('NHTadmins.NHTLoaiSanPham.NHTDelete', $item->id) }}" class="btn btn-danger" 
                                     onclick="return confirm('Bạn có chắc muốn xóa không ?')">Xóa</a>
                             </td>  
                         </tr>
                     @empty
-                        <th colspan="5"> Chưa có thông tin loại sản phẩm  </th>
+                        <tr>
+                            <td colspan="5" class="text-center">Chưa có thông tin loại sản phẩm</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
-    
-        

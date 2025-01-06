@@ -1,7 +1,6 @@
 
 <section >
     <header class="d-flex align-items-center justify-content-between p-3 bg-light border-bottom">
-        <!-- Logo -->
         <div class="logo d-flex align-items-center">
             <img src="/images/logo.png" alt="Logo" class="me-2" style="width: 70px; height: auto;">
             <h2 class="m-0">CHUCHU STUDIO</h2>

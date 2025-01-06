@@ -43,15 +43,16 @@ class NHTHoaDonController extends Controller
     public function NHTEdit($id)
     {
         $NHTHoaDon = NHTHoaDon::findOrFail($id);
-        return view('NHTadmins.NHTHoaDon.NHTEdit');
+        return view('NHTadmins.NHTHoaDon.NHTEdit', ['NHTHoaDon' => $NHTHoaDon]);
     }
+    
 
     public function NHTEditSubmit(Request $request, $id)
 {
     $validate = $request->validate([
-        'NHTMaHD' => 'required,unique:NHTHoaDon,NHTMaHD,' . $id,
-        'NHTMaKH' => 'required,exists:NHTKhachHang,NHTMaKH',
-        'NHTNgayHD' => 'required|date, after_or_equal:today',
+        'NHTMaHD' => 'required|unique:NHTHoaDon,NHTMaHD,' . $id,
+        'NHTMaKH' => 'required|exists:NHTKhachHang,NHTMaKH',
+        'NHTNgayHD' => 'required|date',
         'NHTHoTenKH' => 'required|string',
         'NHTTongTriGia' => 'required|numeric|min:0',
         'NHTTrangThai' => 'required|boolean',
@@ -65,8 +66,10 @@ class NHTHoaDonController extends Controller
     $NHTHoaDon->NHTTongTriGia = $request->NHTTongTriGia;
     $NHTHoaDon->NHTTrangThai = $request->NHTTrangThai;
     $NHTHoaDon->save();
+    
     return redirect()->route('NHTadmins.NHTHoaDon.NHTList')->with('success', 'Hóa đơn được cập nhật thành công.');
 }
+
 
     public function NHTDelete($id)
     {

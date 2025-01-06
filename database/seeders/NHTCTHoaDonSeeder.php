@@ -11,24 +11,24 @@ class NHTCTHoaDonSeeder extends Seeder
     {
         DB::table('NHTCTHoaDon')->insert([
             [
-                'NHTHoaDonID' => 001,
-                'NHTSanPhamID' => 01,
+                'NHTHoaDonID' => 'HD001',
+                'NHTSanPhamID' => 'VKN01',
                 'NHTSoLuongMua' => 2,
                 'NHTDonGiaMua' => 150000.00,
                 'NHTThanhTien' => 300000.00 ,
                 'NHTTrangThai' => 1,
             ],
             [
-                'NHTHoaDonID' => 002,
-                'NHTSanPhamID' => 02,
+                'NHTHoaDonID' =>"HD002",
+                'NHTSanPhamID' => "VKN02",
                 'NHTSoLuongMua' => 1,
                 'NHTDonGiaMua' => 230000,
                 'NHTThanhTien' => 230000,
                 'NHTTrangThai' => 1,
             ],
             [
-                'NHTHoaDonID' => 003,
-                'NHTSanPhamID' => 03,
+                'NHTHoaDonID' => "HD003",
+                'NHTSanPhamID' => "ST01",
                 'NHTSoLuongMua' => 3,
                 'NHTDonGiaMua' => 50000,
                 'NHTThanhTien' => 150000,
