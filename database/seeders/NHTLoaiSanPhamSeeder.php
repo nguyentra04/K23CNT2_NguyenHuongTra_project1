@@ -13,32 +13,32 @@ class NHTLoaiSanPhamSeeder extends Seeder
     public function run(): void
     {
         DB::table('NHTLoaiSanPham')->insert([
-            'NHTMaLoai'=>'V120',
+            'NHTMaLoai'=>'VKN120',
             'NHTTenLoai'=>'Vở kẻ ngang 120 trang',
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTLoaiSanPham')->insert([
-            'NHTMaLoai'=>'V80',
+            'NHTMaLoai'=>'VKN80',
             'NHTTenLoai'=>'Vở kẻ ngang 80 trang ',
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTLoaiSanPham')->insert([
-            'NHTMaLoai'=>'S01',
+            'NHTMaLoai'=>'ST001',
             'NHTTenLoai'=>'Sổ tay khổ A5 ',
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTLoaiSanPham')->insert([
-            'NHTMaLoai'=>'S02',
+            'NHTMaLoai'=>'ST002',
             'NHTTenLoai'=>'Sổ tay khổ A4',
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTLoaiSanPham')->insert([
-            'NHTMaLoai'=>'P01',
+            'NHTMaLoai'=>'PLN01',
             'NHTTenLoai'=>'Planner 2025',
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTLoaiSanPham')->insert([
-            'NHTMaLoai'=>'P02',
+            'NHTMaLoai'=>'PLN02',
             'NHTTenLoai'=>'Planner 2024',
             'NHTTrangThai'=>0,
         ]);

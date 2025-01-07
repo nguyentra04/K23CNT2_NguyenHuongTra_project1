@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Danh sách loại sản phẩm</h1>
-                <a href="{{route('NHTadmins.NHTSanPham.NHTCreateSubmit') }}" class="btn btn-success">Thêm mới</a>
+                <a href="{{ route('NHTadmins.NHTSanPham.NHTCreateSubmit') }}" class="btn btn-success">Thêm mới</a>
             </div>
         </div>
     </div>
@@ -34,29 +34,29 @@
                             <td>{{ $item->NHTTenSP }}</td>
                             <td>
                                 @if ($item->NHTHinhAnh)
-                                    <img src="{{ asset('images/' . $item->NHTHinhAnh) }}" alt="Product Image" width="100">
+                                    <img src="{{ asset($item->NHTHinhAnh) }}" alt="{{ $item->NHTTenSP }}" style="width: 100px; height: auto;">
                                 @else
-                                    No Image
+                                    <span>Không có ảnh</span>
                                 @endif
                             </td>
                             <td>{{ $item->NHTMoTa }}</td>
-                            <td>{{ $item->NHTDonGia }}</td>
+                            <td>{{ number_format($item->NHTDonGia) }} VND</td>
                             <td>{{ $item->NHTSoLuong }}</td>
                             <td>{{ $item->NHTMaLoai }}</td>
-                            <td>{{ $item->NHTTrangThai }}</td>
+                            <td>{{ $item->NHTTrangThai == 0 ? 'Hoạt động' : 'Không hoạt động' }}</td>
                             <td>
                                 <a href="{{ route('NHTadmins.NHTSanPham.NHTEdit', $item->id) }}" class="btn btn-warning">Sửa</a>
                                 <a href="{{ route('NHTadmins.NHTSanPham.NHTDelete', $item->id) }}" class="btn btn-danger" 
-                                    onclick="return confirm('Bạn có chắc muốn xóa không ?')" >Xóa</a>
+                                    onclick="return confirm('Bạn có chắc muốn xóa không ?')">Xóa</a>
                             </td>  
                         </tr>
                     @empty
-                        <th colspan="5"> Chưa có thông tin sản phẩm  </th>
+                        <tr>
+                            <td colspan="10" class="text-center">Chưa có thông tin sản phẩm</td>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
         </div>
     </div>
 @endsection
-    
-        

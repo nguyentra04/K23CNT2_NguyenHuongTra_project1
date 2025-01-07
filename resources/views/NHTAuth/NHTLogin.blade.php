@@ -5,59 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập cho Admin </title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #F9F9F9; /* Màu nền sáng nhẹ */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: #333;
-        }
-
-        .login-container {
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Làm mờ bóng đổ */
-            width: 350px;
-            text-align: center;
-            border: 1px solid #ddd; /* Thêm border mỏng */
-        }
-
-        h1 {
-            margin-bottom: 25px;
-            color: #FFB6C1; /* Tông hồng pastel */
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            color: #666;
-            text-align: left;
-            font-weight: 500;
-        }
-
-        input[type="email"], input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-            background-color: #f4f4f4;
-            transition: border-color 0.3s ease; 
-        }
-
-        input[type="email"]:focus, input[type="password"]:focus {
-            border-color: #FFB6C1; 
-            outline: none;
-        }
-
-        button {
+        body{
+        margin: 50px;
+        padding: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+    }
+    .loginform{
+        width:  400px;
+        padding: 40px;
+        background-color: white;
+        color:aliceblue;
+        border: none;
+        box-shadow: inset 5px 5px 15px rgba(0,0,0, 0.1);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        border-radius: 25px;
+    }
+    .loginform h1{
+        padding: 12x;
+        color: black;
+        font-size: 50px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 1px 1px 0px rgba(0,0,0, 0.1);
+        
+    }
+    .loginform input {
+        width: 90%;
+        padding: 20px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border-radius: 20px;
+        border: none;
+        box-shadow: inset 5px 5px 15px rgba(0,0,0, 0.1);
+        outline: none;
+        color: black;
+    }
+    .loginform a{
+        text-decoration: none;
+        color: #FFB6C1;
+        padding: 10px;
+    }
+    .loginform button{
+        width: 100%;
+        padding: 15px;
+        padding-bottom: 15px;
+        border: none;
+        border-radius: 20px;
+        background-color: whitesmoke;
+        position: relative;
+        color: black;
+        box-shadow: inset 5px 5px 15px rgba(0,0,0, 0.1);
+        text-align: center;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    button {
             background-color: #FFB6C1; 
             color: white;
             padding: 12px 20px;
@@ -89,21 +97,14 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h1>Đăng nhập Admin</h1>
+    <div class="loginform">
+        <h1>Welcome</h1>
         <form action="{{ route('NHTLogin') }}" method="POST">
             @csrf
-            <div>
-                <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required>
-            </div>
-            <div>
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" required>
-            </div>
-            <button type="submit">Login</button>
+                <input type="text" name="username" placeholder="username" required><br>
+                <input type="password" name="password" placeholder="password" required><br>
+                <button type="submit">Login</button>
         </form>
-
         @if ($errors->any())
             <div class="error-list">
                 <ul>

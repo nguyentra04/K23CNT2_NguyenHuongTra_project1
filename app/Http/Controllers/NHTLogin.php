@@ -18,17 +18,17 @@ class NHTLogin extends Controller
     {
 
         $validatedData = $request->validate([
-            'NHTEmail' => 'required|email', 
+            'NHTUsername' => 'required|email', 
             'NHTPassword' => 'required|min:6',  
         ]);
 
         // Attempt to log in the user
-        if (Auth::attempt($request->only('NHTEmail', 'NHTPassword'))) {
+        if (Auth::attempt($request->only('NHTUsername', 'NHTPassword'))) {
             return redirect()->intended(route('NHTDashboard'));
         }
         
         throw ValidationException::withMessages([
-            'NHTEmail' => ['Tài khoản hoặc mật khẩu không đúng.'],
+            'NHTUsername' => ['Tài khoản hoặc mật khẩu không đúng.'],
         ]);
     }
 }

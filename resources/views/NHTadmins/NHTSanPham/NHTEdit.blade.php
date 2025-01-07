@@ -1,5 +1,5 @@
 @extends('layouts.admins.NHT_master')
-@section('title','Sửa thông tin loại sản phẩm ')
+@section('title','Sửa thông tin sản phẩm ')
 @section('content-body')
    <div class="container border">
     <div class="row">
@@ -14,7 +14,7 @@
                 <input type="hidden" name="id" id="id" value="{{ $nhtsp->id ?? '' }}">
                 <div class="card">
                     <div class="card-header">
-                        <h2> Sửa thông tin loại sản phẩm  </h2>
+                        <h2> Sửa thông tin sản phẩm  </h2>
                     </div>
                     <div class="card-body container-fluid">
                         <div class="mb-3 row">
@@ -41,7 +41,7 @@
                                 <input type="file" class="form-control" id="NHTHinhAnh" name="NHTHinhAnh">
                                 @if ($nhtsp->NHTHinhAnh)
                                     <div class="mt-2">
-                                        <img src="{{ asset('storage/' . $nhtsp->NHTHinhAnh) }}" alt="Hình ảnh hiện tại" width="150">
+                                        <img src="{{ asset($nhtsp->NHTHinhAnh) }}" alt="Hình ảnh hiện tại" style="width: 150px; height: auto;">
                                     </div>
                                 @endif
                                 @error('NHTHinhAnh')

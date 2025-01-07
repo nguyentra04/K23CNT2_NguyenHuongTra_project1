@@ -18,9 +18,9 @@ class NHTSanPhamSeeder extends Seeder
        
     
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP' => 'VKN01',
+            'NHTMaSP' => 'V01',
             'NHTTenSP' => 'Vở kẻ ngang 120 trang',
-            'NHTHinhAnh' => '/images/VKN01.jpg',
+            'NHTHinhAnh' => 'images/VKN01.jpg',
             'NHTMoTa' => 'Vở kẻ ngang loại 120 trang dùng cho học sinh.',
             'NHTDonGia' => 12000,
             'NHTSoLuong' => 10,
@@ -30,9 +30,9 @@ class NHTSanPhamSeeder extends Seeder
         ]);
         
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'VKN02',
+            'NHTMaSP'=>'V02',
             'NHTTenSP'=>'Vở kẻ ngang 80 trang',
-            'NHTHinhAnh'=>'/images/VKN02.jpg',
+            'NHTHinhAnh'=>'images/VKN02.jpg',
             'NHTMoTa'=>'Vở kẻ ngang 80 trang',
             'NHTDonGia'=>12000,
             'NHTSoLuong'=>100,
@@ -40,9 +40,9 @@ class NHTSanPhamSeeder extends Seeder
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'ST01',
+            'NHTMaSP'=>'S01',
             'NHTTenSP'=>'Sổ tay khổ A5',
-            'NHTHinhAnh'=>'/images/ST01.jpg',
+            'NHTHinhAnh'=>'images/ST01.jpg',
             'NHTMoTa'=>'Sổ tay khổ A5',
             'NHTDonGia'=>55000,
             'NHTSoLuong'=>100,
@@ -50,9 +50,9 @@ class NHTSanPhamSeeder extends Seeder
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'ST02',
+            'NHTMaSP'=>'S02',
             'NHTTenSP'=>'Sổ tay khổ A4',
-            'NHTHinhAnh'=>'/images/ST02.jpg',
+            'NHTHinhAnh'=>'images/ST02.jpg',
             'NHTMoTa'=>'Sổ viết khổ A4',
             'NHTDonGia'=>65000,
             'NHTSoLuong'=>100,
@@ -60,9 +60,9 @@ class NHTSanPhamSeeder extends Seeder
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'ST03',
+            'NHTMaSP'=>'S03',
             'NHTTenSP'=>'Sổ tay khổ A3',
-            'NHTHinhAnh'=>'/images/ST03.jpg',
+            'NHTHinhAnh'=>'images/ST03.jpg',
             'NHTMoTa'=>'Sổ viết khổ A5',
             'NHTDonGia'=>85000,
             'NHTSoLuong'=>100,
@@ -70,9 +70,9 @@ class NHTSanPhamSeeder extends Seeder
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'PLN01',
+            'NHTMaSP'=>'P01',
             'NHTTenSP'=>'Sổ Planner 2024',
-            'NHTHinhAnh'=>'/images/PL01.jpg',
+            'NHTHinhAnh'=>'images/PL01.jpg',
             'NHTMoTa'=>'Sổ Planner 2024',
             'NHTDonGia'=>95000,
             'NHTSoLuong'=>100,
@@ -80,9 +80,9 @@ class NHTSanPhamSeeder extends Seeder
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'PLN02',
+            'NHTMaSP'=>'P02',
             'NHTTenSP'=>'Sổ planner 2024',
-            'NHTHinhAnh'=>'/images/PL02.jpg',
+            'NHTHinhAnh'=>'images/PL02.jpg',
             'NHTMoTa'=>'Sổ Planner 2024',
             'NHTDonGia'=>105000,
             'NHTSoLuong'=>100,
@@ -90,9 +90,9 @@ class NHTSanPhamSeeder extends Seeder
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'PLN03',
+            'NHTMaSP'=>'P03',
             'NHTTenSP'=>'Sổ planner 2025',
-            'NHTHinhAnh'=>'/images/PL03.jpg',
+            'NHTHinhAnh'=>'images/PL03.jpg',
             'NHTMoTa'=>'Sổ Planner 2025',
             'NHTDonGia'=>115000,
             'NHTSoLuong'=>100,
@@ -100,9 +100,9 @@ class NHTSanPhamSeeder extends Seeder
             'NHTTrangThai'=>0,
         ]);
         DB::table('NHTSanPham')->insert([
-            'NHTMaSP'=>'PLN04',
+            'NHTMaSP'=>'P04',
             'NHTTenSP'=>'Sổ Planner 2025',
-            'NHTHinhAnh'=>'/images/PL04.jpg',
+            'NHTHinhAnh'=>'images/PL04.jpg',
             'NHTMoTa'=>'Sổ Planner 2026',
             'NHTDonGia'=>125000,
             'NHTSoLuong'=>100,

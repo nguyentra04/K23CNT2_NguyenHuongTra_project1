@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('NHTMaSP',255)->unique();
             $table->string('NHTTenSP', 255);
-            $table->string('NHTHinhAnh', 255);
+            $table->string('NHTHinhAnh', 255)-> nullable();
             $table->string('NHTMoTa')->nullable();
             $table->float('NHTDonGia');
             $table->integer('NHTSoLuong')->default(100);
