@@ -6,6 +6,9 @@
                 <a href="{{ route('NHTadmins.NHTHome.NHTindex') }}">Trang chủ</a>
             </li>
             <li class="list-group-item">
+                <a href="/nht-admins/NHTDashboard">Dashboard</a>
+            </li>
+            <li class="list-group-item">
                 <a href="/nht-admins/NHTLogin">Đăng nhập</a>
             </li>
             <li class="list-group-item">

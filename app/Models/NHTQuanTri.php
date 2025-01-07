@@ -9,5 +9,12 @@ class NHTQuanTri extends Model
 {
     use HasFactory;
     protected $table = 'NHTQuanTri';
+    protected $fillable = [
+        'NHTTaiKhoan', 
+        'NHTMatKhau',
+        'NHTGioiTinh',
+        'NHTChucVu',
+        'NHTTrangThai',
+    ];
 
 }
