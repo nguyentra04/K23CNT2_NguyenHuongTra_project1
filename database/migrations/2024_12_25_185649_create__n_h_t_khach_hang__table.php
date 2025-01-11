@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('NHTSDT',255)->nullable();
             $table->string('NHTEmail',255)->nullable();
             $table->date('NHTNgaySinh')->nullable();
-            $table->string('NHTGioiTinh')->nullable();
+            $table->enum('NHTGioiTinh', ['Nam', 'Nữ']);
             $table->tinyInteger('NHTTrangThai');
             $table->rememberToken();//ghi nhớ đăng nhập
             $table->timestamps();

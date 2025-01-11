@@ -9,4 +9,14 @@ class NHTHoaDon extends Model
 {
     use HasFactory;
     protected $table = 'NHTHoaDon';
+    protected $primaryKey = 'NHTMaHD';
+    protected $fillable = [
+       'NHTMaHD','NHTMaKH','NHTNgayHD','NHTHoTenKH','NHTTongTriGia','NHTTrangThai'
+    ];
+    public function NHTKhachHang()
+    {
+        return $this->belongsTo(NHTKhachHang::class, 'NHTMaKH', 'id','NHTTenKH');
+    }
+
+
 }

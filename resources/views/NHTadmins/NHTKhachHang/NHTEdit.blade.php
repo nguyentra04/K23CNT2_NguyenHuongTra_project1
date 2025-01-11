@@ -4,7 +4,7 @@
    <div class="container border">
     <div class="row">
         <div class="col">
-            <form action="{{ route('NHTadmins.NHTKhachHang.NHTEditSubmit')}}" method="POST">
+            <form action="{{ route('NHTadmins.NHTKhachHang.NHTEditSubmit',['id' => $nhtkh->id])}}" method="POST">
                 @csrf
                 <input type="hidden" name="id" id="id" value="{{ $nhtkh->id}}">
                 <div class="card">

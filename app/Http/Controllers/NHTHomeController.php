@@ -48,15 +48,12 @@ class NHTHomeController extends Controller
      */
     public function NHTShow($id)
     {
-        // Tìm sản phẩm theo ID
         $nhtsp = NHT_SanPham::find($id);
-
-        // Nếu không tìm thấy sản phẩm, trả về trang lỗi hoặc thông báo
+        
         if (!$nhtsp) {
             return redirect()->route('NHTadmins.NHTHome.NHTindex')->with('error', 'Sản phẩm không tồn tại.');
         }
 
-        // Trả về view với thông tin sản phẩm
         return view('NHTadmins.NHTHome.NHTShow', compact('nhtsp'));
     }
 

@@ -4,7 +4,7 @@
 
 @section('content-body')
    <div class="container border mt-4">
-        <form action="{{ route('NHTadmins.NHTCTHoaDon.NHTCTEditSubmit')}}" method="POST">
+        <form action="{{ route('NHTadmins.NHTCTHoaDon.NHTCTEditSubmit',['id' => $NHTCTHoaDon->id]))}}" method="POST">
             @csrf
             <input type="hidden" name="id" id="id" value="{{ $NHTCTHoaDon->id }}">
             <div class="card">

@@ -19,52 +19,99 @@ class NHTLoaiSanPhamController extends Controller
     {
         return view('NHTadmins.NHTLoaiSanPham.NHTCreate');
     }
+
+    // Handle form submission for creating a new product category
     public function NHTCreateSubmit(Request $request)
     {
         $validatedData = $request->validate([
-            'NHTMaLoai' => 'required',
+            'NHTMaLoai' => 'required|unique:NHT_Loai_SP,NHTMaLoai',
             'NHTTenLoai' => 'required',
-            'NHTTrangThai' => 'required',
+            'NHTTrangThai' => 'required|in:0,1',
+        ], [
+            'NHTMaLoai.required' => 'Vui lòng nhập mã loại sản phẩm',
+            'NHTMaLoai.unique' => 'Mã loại sản phẩm đã tồn tại',
+            'NHTTenLoai.required' => 'Vui lòng nhập tên loại sản phẩm',
+            'NHTTrangThai.required' => 'Vui lòng chọn trạng thái',
+            'NHTTrangThai.in' => 'Trạng thái không hợp lệ',
         ]);
 
-        $nhtloaisps = new NHT_Loai_SP();
-        $nhtloaisps->NHTMaLoai = $request->input('NHTMaLoai');
-        $nhtloaisps->NHTTenLoai = $request->input('NHTTenLoai');
-        $nhtloaisps->NHTTrangThai = $request->input('NHTTrangThai');
-        $nhtloaisps->save();
-        return redirect()->route('NHTLoaiSanPham.NHTList');
+        try {
+            NHT_Loai_SP::create([
+                'NHTMaLoai' => $request->input('NHTMaLoai'),
+                'NHTTenLoai' => $request->input('NHTTenLoai'),
+                'NHTTrangThai' => $request->input('NHTTrangThai'),
+            ]);
+
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')
+                ->with('success', 'Thêm loại sản phẩm thành công.');
+        } catch (\Exception $e) {
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTCreate')
+                ->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
-    // Phương thức hiển thị form sửa thông tin loại sản phẩm
+
+    // Show the edit product category form
     public function NHTEdit($id)
     {
-        $nhtloaisps = NHT_Loai_SP::findOrFail($id);
+        $nhtloaisps = NHT_Loai_SP::find($id);
+
+        if (!$nhtloaisps) {
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')
+                ->with('error', 'Không tìm thấy loại sản phẩm.');
+        }
+
         return view('NHTadmins.NHTLoaiSanPham.NHTEdit', ['nhtloaisps' => $nhtloaisps]);
     }
-
-
     public function NHTEditSubmit(Request $request, $id)
-{
-    $validatedData = $request->validate([
-        'NHTMaLoai' => 'required',
-        'NHTTenLoai' => 'required',
-        'NHTTrangThai' => 'required|in:0,1', // Kiểm tra giá trị hợp lệ
-    ]);
+    {
+        $validatedData = $request->validate([
+            'NHTMaLoai' => 'required' . $id,
+            'NHTTenLoai' => 'required',
+            'NHTTrangThai' => 'required|in:0,1',
+        ], [
+            'NHTMaLoai.required' => 'Vui lòng nhập mã loại sản phẩm',
+            'NHTMaLoai.unique' => 'Mã loại sản phẩm đã tồn tại',
+            'NHTTenLoai.required' => 'Vui lòng nhập tên loại sản phẩm',
+            'NHTTrangThai.required' => 'Vui lòng chọn trạng thái',
+            'NHTTrangThai.in' => 'Trạng thái không hợp lệ',
+        ]);
 
-    $nhtloaisps = NHT_Loai_SP::findOrFail($id);
-    $nhtloaisps->NHTMaLoai = $request->input('NHTMaLoai');
-    $nhtloaisps->NHTTenLoai = $request->input('NHTTenLoai');
-    $nhtloaisps->NHTTrangThai = $request->input('NHTTrangThai');
-    $nhtloaisps->save();
+        $nhtloaisps = NHT_Loai_SP::find($id);
 
-    return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')->with('success', 'Cập nhật loại sản phẩm thành công');
-}
+        if (!$nhtloaisps) {
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')
+                ->with('error', 'Không tìm thấy loại sản phẩm.');
+        }
 
+        try {
+            $nhtloaisps->update([
+                'NHTMaLoai' => $request->input('NHTMaLoai'),
+                'NHTTenLoai' => $request->input('NHTTenLoai'),
+                'NHTTrangThai' => $request->input('NHTTrangThai'),
+            ]);
 
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')
+                ->with('success', 'Cập nhật loại sản phẩm thành công.');
+        } catch (Exception $e) {
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTEdit', $id)
+                ->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
+    }
 
     public function NHTDelete($id)
     {
         $nhtloaisps = NHT_Loai_SP::find($id);
-        $nhtloaisps->delete();
-        return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList');
+
+        if (!$nhtloaisps) {
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')
+                ->with('error', 'Không tìm thấy loại sản phẩm.');
+        }
+        try {
+            $nhtloaisps->delete();
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')->with('success', 'Xóa loại sản phẩm thành công.');
+        } catch (Exception $e) {
+            return redirect()->route('NHTadmins.NHTLoaiSanPham.NHTList')
+                ->with('error', 'Đã xảy ra lỗi: ' . $e->getMessage());
+        }
     }
 }

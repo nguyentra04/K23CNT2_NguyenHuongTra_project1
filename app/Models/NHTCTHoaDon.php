@@ -9,7 +9,7 @@ class NHTCTHoaDon extends Model
 {
     use HasFactory;
     protected $table = 'NHTCTHoaDon';
-
+    protected $primaryKey = 'NHTCTHoaDonID';
     protected $fillable = [
         'NHTHoaDonID',
         'NHTSanPhamID',

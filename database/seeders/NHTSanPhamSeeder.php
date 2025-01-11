@@ -20,7 +20,7 @@ class NHTSanPhamSeeder extends Seeder
         DB::table('NHTSanPham')->insert([
             'NHTMaSP' => 'V01',
             'NHTTenSP' => 'Vở kẻ ngang 120 trang',
-            'NHTHinhAnh' => 'images/VKN01.jpg',
+            'NHTHinhAnh' => 'images/V02.jpg',
             'NHTMoTa' => 'Vở kẻ ngang loại 120 trang dùng cho học sinh.',
             'NHTDonGia' => 12000,
             'NHTSoLuong' => 10,
@@ -32,7 +32,7 @@ class NHTSanPhamSeeder extends Seeder
         DB::table('NHTSanPham')->insert([
             'NHTMaSP'=>'V02',
             'NHTTenSP'=>'Vở kẻ ngang 80 trang',
-            'NHTHinhAnh'=>'images/VKN02.jpg',
+            'NHTHinhAnh'=>'images/V03.jpg',
             'NHTMoTa'=>'Vở kẻ ngang 80 trang',
             'NHTDonGia'=>12000,
             'NHTSoLuong'=>100,

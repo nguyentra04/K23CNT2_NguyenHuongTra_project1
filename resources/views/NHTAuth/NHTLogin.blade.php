@@ -78,7 +78,7 @@
         }
 
         button:hover {
-            background-color: #FF8DAA; /* Màu hồng đậm hơn khi hover */
+            background-color:#4f6d7a; /* Màu hồng đậm hơn khi hover */
         }
 
         .error-list {

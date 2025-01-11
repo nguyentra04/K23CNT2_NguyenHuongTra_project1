@@ -6,7 +6,7 @@
    <div class="container border">
     <div class="row">
         <div class="col">
-            <form action="{{ route('NHTadmins.NHTLoaiSanPham.NHTEditSubmit', $nhtloaisps->id) }}" method="POST">
+            <form action="{{ route('NHTadmins.NHTLoaiSanPham.NHTEditSubmit',['id' => $nhtloaisp->id])) }}" method="POST">
                 @csrf
                 <input type="hidden" name="id" id="id" value="{{ $nhtloaisps->id }}">
                 

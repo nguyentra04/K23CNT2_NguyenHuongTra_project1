@@ -7,23 +7,29 @@ use Illuminate\Http\Request;
 
 class NHTKhachHangController extends Controller
 {
-    // List all customers
+    /**
+     * List all customers
+     */
     public function NHTList()
     {
         $nhtkh = NHTKhachHang::all();
         return view('NHTadmins.NHTKhachHang.NHTList', ['nhtkh' => $nhtkh]);
     }
 
-    // Show create customer form
+    /**
+     * Show create customer form
+     */
     public function NHTCreate()
     {
         return view('NHTadmins.NHTKhachHang.NHTCreate');
     }
 
-    // Handle create customer submission
+    /**
+     * Handle create customer submission
+     */
     public function NHTCreateSubmit(Request $request)
     {
-        $validate = $request->validate([
+        $request->validate([
             'NHTMaKH' => 'required|unique:NHTKhachHang,NHTMaKH',
             'NHTTenKH' => 'required|string|max:255',
             'NHTDiaChi' => 'required|string|max:255',
@@ -34,31 +40,39 @@ class NHTKhachHangController extends Controller
             'NHTTrangThai' => 'required|boolean',
         ]);
 
-        $nhtkh = new NHTKhachHang;
-        $nhtkh->NHTMaKH = $request->NHTMaKH;
-        $nhtkh->NHTTenKH = $request->NHTTenKH;
-        $nhtkh->NHTDiaChi = $request->NHTDiaChi;
-        $nhtkh->NHTSDT = $request->NHTSDT;
-        $nhtkh->NHTEmail = $request->NHTEmail;
-        $nhtkh->NHTNgaySinh = $request->NHTNgaySinh;
-        $nhtkh->NHTGioiTinh = $request->NHTGioiTinh;
-        $nhtkh->NHTTrangThai = $request->NHTTrangThai;
-        $nhtkh->save();
+        try {
+            $nhtkh = new NHTKhachHang();
+            $nhtkh->NHTMaKH = $request->NHTMaKH;
+            $nhtkh->NHTTenKH = $request->NHTTenKH;
+            $nhtkh->NHTDiaChi = $request->NHTDiaChi;
+            $nhtkh->NHTSDT = $request->NHTSDT;
+            $nhtkh->NHTEmail = $request->NHTEmail;
+            $nhtkh->NHTNgaySinh = $request->NHTNgaySinh;
+            $nhtkh->NHTGioiTinh = $request->NHTGioiTinh;
+            $nhtkh->NHTTrangThai = $request->NHTTrangThai;
+            $nhtkh->save();
 
-        return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('success', 'Khách hàng được tạo thành công!');
+            return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('success', 'Khách hàng được tạo thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi tạo khách hàng: ' . $e->getMessage());
+        }
     }
 
-    // Show edit form for a specific customer
+    /**
+     * Show edit form for a specific customer
+     */
     public function NHTEdit($id)
     {
         $nhtkh = NHTKhachHang::findOrFail($id);
         return view('NHTadmins.NHTKhachHang.NHTEdit', ['nhtkh' => $nhtkh]);
     }
 
-    // Handle customer edit submission
+    /**
+     * Handle customer edit submission
+     */
     public function NHTEditSubmit(Request $request, $id)
     {
-        $validate = $request->validate([
+        $request->validate([
             'NHTMaKH' => 'required|unique:NHTKhachHang,NHTMaKH,' . $id,
             'NHTTenKH' => 'required|string|max:255',
             'NHTDiaChi' => 'required|string|max:255',
@@ -69,26 +83,36 @@ class NHTKhachHangController extends Controller
             'NHTTrangThai' => 'required|boolean',
         ]);
 
-        $nhtkh = NHTKhachHang::findOrFail($id);
-        $nhtkh->NHTMaKH = $request->NHTMaKH;
-        $nhtkh->NHTTenKH = $request->NHTTenKH;
-        $nhtkh->NHTDiaChi = $request->NHTDiaChi;
-        $nhtkh->NHTSDT = $request->NHTSDT;
-        $nhtkh->NHTEmail = $request->NHTEmail;
-        $nhtkh->NHTNgaySinh = $request->NHTNgaySinh;
-        $nhtkh->NHTGioiTinh = $request->NHTGioiTinh;
-        $nhtkh->NHTTrangThai = $request->NHTTrangThai;
-        $nhtkh->save();
+        try {
+            $nhtkh = NHTKhachHang::findOrFail($id);
+            $nhtkh->NHTMaKH = $request->NHTMaKH;
+            $nhtkh->NHTTenKH = $request->NHTTenKH;
+            $nhtkh->NHTDiaChi = $request->NHTDiaChi;
+            $nhtkh->NHTSDT = $request->NHTSDT;
+            $nhtkh->NHTEmail = $request->NHTEmail;
+            $nhtkh->NHTNgaySinh = $request->NHTNgaySinh;
+            $nhtkh->NHTGioiTinh = $request->NHTGioiTinh;
+            $nhtkh->NHTTrangThai = $request->NHTTrangThai;
+            $nhtkh->save();
 
-        return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('success', 'Sửa thành công');
+            return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('success', 'Sửa khách hàng thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi khi sửa khách hàng: ' . $e->getMessage());
+        }
     }
 
-    // Delete a customer
+    /**
+     * Delete a customer
+     */
     public function NHTDelete($id)
     {
-        $nhtkh = NHTKhachHang::findOrFail($id);
-        $nhtkh->delete();
+        try {
+            $nhtkh = NHTKhachHang::findOrFail($id);
+            $nhtkh->delete();
 
-        return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('success', 'Xóa thành công');
+            return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('success', 'Xóa khách hàng thành công!');
+        } catch (\Exception $e) {
+            return redirect()->route('NHTadmins.NHTKhachHang.NHTList')->with('error', 'Đã xảy ra lỗi khi xóa khách hàng: ' . $e->getMessage());
+        }
     }
 }
