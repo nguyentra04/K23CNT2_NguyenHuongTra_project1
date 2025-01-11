@@ -4,9 +4,9 @@
 
 @section('content-body')
     <h1 class="mb-4">Danh sách hóa đơn</h1>
-    <a href="{{ route('NHTadmins.NHTHoaDon.NHTcreate') }}" class="btn btn-primary">Thêm mới</a>
+    <a href="{{ route('NHTadmins.NHTHoaDon.NHTCreateSubmit') }}" class="btn btn-primary">Thêm mới</a>
     <table class="table mt-4 table-bordered">
-        <thead class="table-dark">
+        <thead class="table">
             <tr>
                 <th class="text-center">#</th>
                 <th class="text-center">Mã hóa đơn</th>
@@ -23,8 +23,8 @@
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
                     <td class="text-center">{{ $item->NHTMaHD }}</td>
-                    <td class="text-center">{{ $item->NHTKhachHang->NHTMaKH ?? 'Không xác định' }}</td>
-                    <td class="text-center">{{ Carbon::parse($item->NHTNgayHD)->format('d-m-Y') }}</td>
+                    <td class="text-center">{{ $item->NHTKhachHang ? $item->NHTKhachHang->NHTMaKH : 'No customer' }}</td>
+                    <td class="text-center">{{ $item->NHTNgayHD }}</td>
                     <td class="text-center">{{ $item->NHTHoTenKH }}</td>
                     <td class="text-center">{{ number_format($item->NHTTongTriGia, 0, ',', '.') }} đ</td>
                     <td class="text-center">

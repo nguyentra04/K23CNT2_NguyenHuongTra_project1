@@ -10,12 +10,7 @@ class NHTQuanTri extends Model
     use HasFactory;
     protected $table = 'NHTQuanTri';
     protected $primaryKey = 'NHTTaiKhoan';
-    protected $fillable = [
-        'NHTTaiKhoan', 
-        'NHTMatKhau',
-        'NHTGioiTinh',
-        'NHTChucVu',
-        'NHTTrangThai',
-    ];
+    protected $fillable = ['NHTTaiKhoan', 'NHTMatKhau', 'NHTGioiTinh', 'NHTChucVu', 'NHTTrangThai'];
+
 
 }

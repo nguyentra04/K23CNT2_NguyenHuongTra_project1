@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('NHTMoTa')->nullable();
             $table->float('NHTDonGia');
             $table->integer('NHTSoLuong')->default(100);
-            $table->string('NHTMaLoai')->references('id')->on('NHTLoaiSanPham');
+            $table->string('NHTMaLoai');
+            $table->foreign('NHTMaLoai')->references('id')->on('NHTLoaiSanPham');
             $table->tinyInteger('NHTTrangThai');
             $table->timestamps();
         });

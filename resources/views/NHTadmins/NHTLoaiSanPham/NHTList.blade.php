@@ -1,5 +1,7 @@
 @extends('layouts.admins.NHT_master')
-@section('title', 'Danh sách sản phẩm')
+
+@section('title', 'Danh sách loại sản phẩm')
+
 @section('content-body')
     <div class="container border">
         <div class="row">
@@ -9,6 +11,7 @@
             </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
             <table class="table table-bordered">
@@ -17,7 +20,7 @@
                         <th>#</th>
                         <th>Mã loại</th>
                         <th>Tên loại sản phẩm</th>
-                        <th>Trạng thái </th>
+                        <th>Trạng thái</th>
                         <th>Chức năng</th>
                     </tr>
                 </thead>
@@ -27,11 +30,14 @@
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td>{{ $item->NHTMaLoai }}</td>
                             <td>{{ $item->NHTTenLoai }}</td>
-                            <td>{{ $item->NHTTrangThai == 1 ? 'Hiển thị' : 'Khóa' }}</td>
+                            <td>{{ $item->NHTTrangThai == 0 ? 'Khóa' : 'Hiển thị' }}</td>
                             <td>
-                                <a href="{{ route('NHTadmins.NHTLoaiSanPham.NHTEdit', $item->id) }}" class="btn btn-primary">Sửa</a>
-                                <a href="{{ route('NHTadmins.NHTLoaiSanPham.NHTDelete', $item->id) }}" class="btn btn-danger" 
-                                    onclick="return confirm('Bạn có chắc muốn xóa không ?')">Xóa</a>
+                                <a href="{{ route('NHTadmins.NHTLoaiSanPham.NHTEdit', $item->id) }}" class="btn btn-warning">Sửa</a>
+                                <form action="{{ route('NHTadmins.NHTLoaiSanPham.NHTDelete', $item->id) }}" method="post" style="display: inline-block;">
+                                    @csrf
+                                     @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa không?')">Xóa</button>
+                                </form>  
                             </td>  
                         </tr>
                     @empty

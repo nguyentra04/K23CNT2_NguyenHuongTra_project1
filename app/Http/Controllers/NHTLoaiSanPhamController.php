@@ -24,7 +24,7 @@ class NHTLoaiSanPhamController extends Controller
     public function NHTCreateSubmit(Request $request)
     {
         $validatedData = $request->validate([
-            'NHTMaLoai' => 'required|unique:NHT_Loai_SP,NHTMaLoai',
+            'NHTMaLoai' => 'required',
             'NHTTenLoai' => 'required',
             'NHTTrangThai' => 'required|in:0,1',
         ], [

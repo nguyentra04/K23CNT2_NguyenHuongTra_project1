@@ -80,7 +80,7 @@ class NHTQuanTriController extends Controller
             'NHTMatKhau' => 'required|min:6',
             'NHTGioiTinh' => 'required',
             'NHTChucVu' => 'required',
-            'NHTTrangThai' => 'required',
+            'NHTTrangThai' => 'required|in:0,1',
         ], [
             'NHTTaiKhoan.required' => 'Vui lòng nhập tài khoản',
             'NHTTaiKhoan.unique' => 'Tài khoản đã tồn tại',
@@ -120,7 +120,6 @@ class NHTQuanTriController extends Controller
 
         try {
             $nhtquantri->delete();
-
             return redirect()->route('NHTadmins.NHTQuanTri.NHTList')
                 ->with('success', 'Xóa quản trị viên thành công.');
         } catch (\Exception $e) {

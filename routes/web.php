@@ -51,10 +51,8 @@ route::get('/nht-admins/NHTQuanTri',[NHTQuanTriController::class,'NHTList'])->na
 //create
 route::get('/nht-admins/NHTQuanTri/NHTCreate',[NHTQuanTriController::class,'NHTCreate'])->name('NHTadmins.NHTQuanTri.NHTCreate');
 route::post('/nht-admins/NHTQuanTri/NHTCreate',[NHTQuanTriController::class,'NHTCreateSubmit'])->name('NHTadmins.NHTQuanTri.NHTCreateSubmit');
-//edit
 route::get('/nht-admins/NHTQuanTri/NHTEdit/{id}',[NHTQuanTriController::class,'NHTEdit'])->name('NHTadmins.NHTQuanTri.NHTEdit');
 route::post('/nht-admins/NHTQuanTri/NHTEdit/{id}',[NHTQuanTriController::class,'NHTEditSubmit'])->name('NHTadmins.NHTQuanTri.NHTEditSubmit');
-//delete
 route::get('/nht-admins/NHTQuanTri/NHTDelete/{id}',[NHTQuanTriController::class,'NHTDelete'])->name('NHTadmins.NHTQuanTri.NHTDelete');
 
 #khachhang
@@ -74,13 +72,13 @@ Route::get('/nht-admins/NHTLoaiSanPham/NHTEdit/{id}', [NHTLoaiSanPhamController:
 Route::post('/nht-admins/NHTLoaiSanPham/NHTEdit/{id}', [NHTLoaiSanPhamController::class, 'NHTEditSubmit'])->name('NHTadmins.NHTLoaiSanPham.NHTEditSubmit');
 route::get('/nht-admins/NHTLoaiSanPham/NHTDelete/{id}', [NHTLoaiSanPhamController::class,'NHTDelete'])->name('NHTadmins.NHTLoaiSanPham.NHTDelete');
 #SanPham
-route::get('/nht-admins/NHTSanPham', [NHTSanPhamController::class,'NHTList'])->name('NHTadmins.NHTSanPham.NHTList');
-route::get('/nht-admins/NHTSanPham/NHTCreate', [NHTSanPhamController::class,'NHTCreate'])->name('NHTadmins.NHTSanPham.NHTCreate');
-route::post('/nht-admins/NHTSanPham/NHTCreate', [NHTSanPhamController::class,'NHTCreateSubmit'])->name('NHTadmins.NHTSanPham.NHTCreateSubmit');
-route::get('/nht-admins/NHTSanPham/NHTEdit/{id}', [NHTSanPhamController::class,'NHTEdit'])->name('NHTadmins.NHTSanPham.NHTEdit');
+Route::get('/nht-admins/NHTSanPham', [NHTSanPhamController::class, 'NHTList'])->name('NHTadmins.NHTSanPham.NHTList');
+Route::get('/nht-admins/NHTSanPham/NHTCreate', [NHTSanPhamController::class, 'NHTCreate'])->name('NHTadmins.NHTSanPham.NHTCreate');
+Route::post('/nht-admins/NHTSanPham/NHTCreate', [NHTSanPhamController::class, 'NHTCreateSubmit'])->name('NHTadmins.NHTSanPham.NHTCreateSubmit');
+Route::get('/nht-admins/NHTSanPham/NHTEdit/{id}', [NHTSanPhamController::class, 'NHTEdit'])->name('NHTadmins.NHTSanPham.NHTEdit');
+Route::put('/nht-admins/NHTSanPham/NHTEdit/{id}', [NHTSanPhamController::class, 'NHTEditSubmit'])->name('NHTadmins.NHTSanPham.NHTEditSubmit');
+Route::get('/nht-admins/NHTSanPham/NHTDelete/{id}', [NHTSanPhamController::class, 'NHTDelete'])->name('NHTadmins.NHTSanPham.NHTDelete');
 
-route::post('/nht-admins/NHTSanPham/NHTEdit/{id}', [NHTSanPhamController::class,'NHTEditSubmit'])->name('NHTadmins.NHTSanPham.NHTEditSubmit');
-route::get('/nht-admins/NHTSanPham/NHTDelete/{id}', [NHTSanPhamController::class,'NHTDelete'])->name('NHTadmins.NHTSanPham.NHTDelete');
 #HoaDon
 route::get('/nht-admins/NHTHoaDon', [NHTHoaDonController::class,'NHTList'])->name('NHTadmins.NHTHoaDon.NHTList');
 route::get('/nht-admins/NHTHoaDon/NHTCreate', [NHTHoaDonController::class,'NHTCreate'])->name('NHTadmins.NHTHoaDon.NHTCreate');

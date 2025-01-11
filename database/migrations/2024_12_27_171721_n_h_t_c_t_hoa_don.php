@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('NHTCTHoaDon', function (Blueprint $table) {
             $table->id();
-            $table->string('NHTHoaDonID')->referenses('id')->on('NHTHoaDon');
-            $table->string('NHTSanPhamID')->referenses('id')->on('NHTSanPham');
+            $table->string('NHTHoaDonID');
+            $table->foreign('NHTHoaDonID')->references('id')->on('NHTHoaDon')->onDelete('cascade');
+            $table->string('NHTSanPhamID');
+            $table->foreign('NHTSanPhamID')->references('id')->on('NHTSanPham')->onDelete('cascade');
             $table->float('NHTSoLuongMua');
             $table->float('NHTDonGiaMua');
             $table->float('NHTThanhTien');
-            $table->tinyInteger('NHTTrangThai');
+            $table->tinyInteger('NHTTrangThai')->default(1);
             $table->timestamps();
         });
     }

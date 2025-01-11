@@ -1,7 +1,9 @@
 @extends('layouts.admins.NHT_master')
+
 @section('title', 'Thêm mới hóa đơn')
+
 @section('content-body')
-<div class="container border">
+<div class="container border mt-4">
     <div class="row">
         <div class="col">
             <form action="{{ route('NHTadmins.NHTHoaDon.NHTCreateSubmit') }}" method="post">
@@ -10,7 +12,7 @@
                     <div class="card-header">
                         <h2>Thêm mới hóa đơn</h2>
                     </div>
-                    <div class="card-body container-fluid">
+                    <div class="card-body">
                         <div class="mb-3 row">
                             <label for="NHTMaHD" class="col-sm-2 col-form-label">Mã hóa đơn</label>
                             <div class="col-sm-10">
@@ -25,10 +27,10 @@
                             <div class="col-sm-10">
                                 <select class="form-control" id="NHTMaKH" name="NHTMaKH" required>
                                     <option value="">Chọn khách hàng</option>
-                                    @foreach ($customers as $customer)
-                                        <option value="{{ $customer->NHTMaKH }}" 
-                                            {{ old('NHTMaKH') == $customer->NHTMaKH ? 'selected' : '' }}>
-                                            {{ $customer->NHTTenKH }}
+                                    @foreach ($nhtkh as $nhtkh)
+                                        <option value="{{ $nhtkh->NHTMaKH }}" 
+                                            {{ old('NHTMaKH') == $nhtkh->NHTMaKH ? 'selected' : '' }}>
+                                            {{ $nhtkh->NHTTenKH }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -58,10 +60,10 @@
                         <div class="mb-3 row">
                             <label for="NHTTrangThai" class="col-sm-2 col-form-label">Trạng thái</label>
                             <div class="col-sm-10">
-                                <input type="radio" id="NHTTrangThai0" name="NHTTrangThai" value="0" {{ old('NHTTrangThai') == '1' ? 'checked' : '' }}>
+                                <input type="radio" id="NHTTrangThai0" name="NHTTrangThai" value="0" {{ old('NHTTrangThai') == '0' ? 'checked' : '' }}>
                                 <label for="NHTTrangThai0">Hiển thị</label>
                                 &nbsp;
-                                <input type="radio" id="NHTTrangThai1" name="NHTTrangThai" value="1" {{ old('NHTTrangThai') == '0' ? 'checked' : '' }}>
+                                <input type="radio" id="NHTTrangThai1" name="NHTTrangThai" value="1" {{ old('NHTTrangThai') == '1' ? 'checked' : '' }}>
                                 <label for="NHTTrangThai1">Khóa</label>
                             </div>
                         </div>

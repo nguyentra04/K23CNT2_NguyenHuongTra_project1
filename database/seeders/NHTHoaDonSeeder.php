@@ -16,7 +16,7 @@ class NHTHoaDonSeeder extends Seeder
             DB::table('NHTHoaDon')->insert([
                 [
                     'NHTMaHD' => 'HD001',
-                    'NHTMaKH' => 87990555,
+                    'NHTMaKH' => '87990555',
                     'NHTNgayHD' => '2025-01-01',
                     'NHTHoTenKH' => 'Jack Hane',
                     'NHTTongTriGia' => 150000,
@@ -24,7 +24,7 @@ class NHTHoaDonSeeder extends Seeder
                 ],
                 [
                     'NHTMaHD' => 'HD002',
-                    'NHTMaKH' => 260392148,
+                    'NHTMaKH' => '260392148',
                     'NHTNgayHD' => '2025-01-02',
                     'NHTHoTenKH' => 'Brody Marks',
                     'NHTTongTriGia' => 230000,
@@ -32,7 +32,7 @@ class NHTHoaDonSeeder extends Seeder
                 ],
                 [
                     'NHTMaHD' => 'HD003',
-                    'NHTMaKH' => 368062916,
+                    'NHTMaKH' => '368062916',
                     'NHTNgayHD' => '2025-01-03',
                     'NHTHoTenKH' => 'Cristian Treutel',
                     'NHTTongTriGia' => 50000,

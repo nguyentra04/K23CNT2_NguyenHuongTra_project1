@@ -1,32 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\NHTKhachHang;
 use Illuminate\Http\Request;
 
 class NHTKhachHangController extends Controller
 {
-    /**
-     * List all customers
-     */
+   
     public function NHTList()
     {
         $nhtkh = NHTKhachHang::all();
         return view('NHTadmins.NHTKhachHang.NHTList', ['nhtkh' => $nhtkh]);
     }
 
-    /**
-     * Show create customer form
-     */
     public function NHTCreate()
     {
         return view('NHTadmins.NHTKhachHang.NHTCreate');
     }
 
-    /**
-     * Handle create customer submission
-     */
+   
     public function NHTCreateSubmit(Request $request)
     {
         $request->validate([
@@ -37,7 +29,7 @@ class NHTKhachHangController extends Controller
             'NHTEmail' => 'required|email',
             'NHTNgaySinh' => 'required|date',
             'NHTGioiTinh' => 'required|in:Nam,Nữ',
-            'NHTTrangThai' => 'required|boolean',
+            'NHTTrangThai' => 'required|in:1,0',
         ]);
 
         try {
@@ -58,18 +50,13 @@ class NHTKhachHangController extends Controller
         }
     }
 
-    /**
-     * Show edit form for a specific customer
-     */
+   
     public function NHTEdit($id)
     {
         $nhtkh = NHTKhachHang::findOrFail($id);
         return view('NHTadmins.NHTKhachHang.NHTEdit', ['nhtkh' => $nhtkh]);
     }
 
-    /**
-     * Handle customer edit submission
-     */
     public function NHTEditSubmit(Request $request, $id)
     {
         $request->validate([
@@ -80,7 +67,7 @@ class NHTKhachHangController extends Controller
             'NHTEmail' => 'required|email',
             'NHTNgaySinh' => 'required|date',
             'NHTGioiTinh' => 'required|in:Nam,Nữ',
-            'NHTTrangThai' => 'required|boolean',
+            'NHTTrangThai' => 'required|in:1,0',
         ]);
 
         try {
@@ -101,9 +88,6 @@ class NHTKhachHangController extends Controller
         }
     }
 
-    /**
-     * Delete a customer
-     */
     public function NHTDelete($id)
     {
         try {

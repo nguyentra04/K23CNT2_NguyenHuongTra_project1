@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\NHT_SanPham;
 use App\Models\NHTHoaDon;
 use App\Models\NHTCTHoaDon;
@@ -11,19 +10,19 @@ class NHTCTHoaDonController extends Controller
 {
     public function NHTCTList()
     {
-        $NHTCTHoaDon = NHTCTHoaDon::with(['NHTHoaDon', 'NHTSanPham'])->get(); // Tải thêm các mối quan hệ
+        $NHTCTHoaDon = NHTCTHoaDon::with(['NHTHoaDon', 'NHTSanPham'])->get(); 
         return view('NHTadmins.NHTCTHoaDon.NHTCTList', ['NHTCTHoaDon' => $NHTCTHoaDon]);
     }
 
-    // Tạo chi tiết hóa đơn
+
     public function NHTCTCreate()
     {
         $NHTHoaDon = NHTHoaDon::all();
-        $NHT_SanPham = NHT_SanPham::all();
-        return view('NHTadmins.NHTCTHoaDon.NHTCTCreate', ['NHTHoaDon' => $NHTHoaDon, 'NHT_SanPham' => $NHT_SanPham]);
+        $nhtsp = NHT_SanPham::all();
+        return view('NHTadmins.NHTCTHoaDon.NHTCTCreate', ['NHTHoaDon' => $NHTHoaDon, 'NHT_SanPham' => $nhtsp]);
     }
 
-    // Lưu chi tiết hóa đơn
+
     public function NHTCTCreateSubmit(Request $request)
     {
         $request->validate([
@@ -32,10 +31,10 @@ class NHTCTHoaDonController extends Controller
             'NHTSoLuongMua' => 'required|integer|min:1',
             'NHTDonGiaMua' => 'required|numeric|min:0',
             'NHTThanhTien' => 'required|numeric|min:0',
-            'NHTTrangThai' => 'required|boolean',
+            'NHTTrangThai' => 'required|in:0,1',
         ]);
 
-        // Lưu chi tiết hóa đơn
+  
         NHTCTHoaDon::create($request->only([
             'NHTHoaDonID',
             'NHTSanPhamID',
@@ -48,24 +47,28 @@ class NHTCTHoaDonController extends Controller
         return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('success', 'Chi tiết hóa đơn đã được tạo thành công.');
     }
 
-    // Sửa chi tiết hóa đơn
-  // Trong phương thức NHTCTEdit
-public function NHTCTEdit($id)
-{
-    $NHTCTHoaDon = NHTCTHoaDon::find($id);
-    if (!$NHTCTHoaDon) {
-        return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('error', 'Chi tiết hóa đơn không tồn tại.');
-    }
-
-    $NHTHoaDon = $NHTCTHoaDon->NHTHoaDon;  // Lấy thông tin hóa đơn liên quan đến chi tiết hóa đơn
-    $NHT_SanPham = NHT_SanPham::all();
-
-    return view('NHTadmins.NHTCTHoaDon.NHTCTEdit', [
-        'NHTCTHoaDon' => $NHTCTHoaDon,
-        'NHTHoaDon' => $NHTHoaDon,
-        'NHT_SanPham' => $NHT_SanPham
-    ]);
-}
+   
+  public function NHTCTEdit($id)
+  {
+     
+      $NHTCTHoaDon = NHTCTHoaDon::find($id);
+  
+    
+      if (!$NHTCTHoaDon) {
+          return redirect()->route('NHTadmins.NHTCTHoaDon.NHTCTList')->with('error', 'Chi tiết hóa đơn không tồn tại.');
+      }
+  
+      
+      $NHTHoaDon = $NHTCTHoaDon->NHTHoaDon;  
+      $nhtsp = NHT_SanPham::all(); 
+  
+      return view('NHTadmins.NHTCTHoaDon.NHTCTEdit', [
+          'NHTCTHoaDon' => $NHTCTHoaDon,  
+          'NHTHoaDon' => $NHTHoaDon,  
+          'NHT_SanPham' => $nhtsp  // Pass the list of products to the view
+      ]);
+  }
+  
 
 
     // Cập nhật chi tiết hóa đơn
@@ -77,7 +80,7 @@ public function NHTCTEdit($id)
             'NHTSoLuongMua' => 'required|integer|min:1',
             'NHTDonGiaMua' => 'required|numeric|min:0',
             'NHTThanhTien' => 'required|numeric|min:0',
-            'NHTTrangThai' => 'required|boolean',
+            'NHTTrangThai' => 'required|in:0,1',
         ]);
 
         $NHTCTHoaDon = NHTCTHoaDon::find($id);

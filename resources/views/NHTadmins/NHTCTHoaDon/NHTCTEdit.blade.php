@@ -4,9 +4,11 @@
 
 @section('content-body')
    <div class="container border mt-4">
-        <form action="{{ route('NHTadmins.NHTCTHoaDon.NHTCTEditSubmit',['id' => $NHTCTHoaDon->id]))}}" method="POST">
+        <form action="{{ route('NHTadmins.NHTCTHoaDon.NHTCTEditSubmit', ['id' => $NHTCTHoaDon->id]) }}" method="POST" id="editInvoiceForm">
             @csrf
+            @method('PUT')
             <input type="hidden" name="id" id="id" value="{{ $NHTCTHoaDon->id }}">
+            
             <div class="card">
                 <div class="card-header">
                     <h2>Sửa thông tin hóa đơn chi tiết</h2>
@@ -15,7 +17,7 @@
                     <div class="mb-3 row">
                         <label for="NHTHoaDonID" class="col-sm-2 col-form-label">Mã hóa đơn</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="NHTHoaDonID" name="NHTHoaDonID" value="{{ $NHTHoaDon->id }}">
+                            <input type="text" class="form-control" id="NHTHoaDonID" name="NHTHoaDonID" value="{{ $NHTHoaDon->id }}" readonly>
                             @error('NHTHoaDonID')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -30,15 +32,19 @@
                             @enderror
                         </div>
                     </div>
+
+ 
                     <div class="mb-3 row">
                         <label for="NHTSoLuongMua" class="col-sm-2 col-form-label">Số lượng</label>
                         <div class="col-sm-10">
                             <input type="number" class="form-control" id="NHTSoLuongMua" name="NHTSoLuongMua" value="{{ $NHTHoaDon->NHTSoLuongMua }}">
                             @error('NHTSoLuongMua')
-                            <span class="text-danger">{{ $message }}</span>
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
+
                     <div class="mb-3 row">
                         <label for="NHTDonGiaMua" class="col-sm-2 col-form-label">Đơn giá</label>
                         <div class="col-sm-10">
@@ -48,6 +54,8 @@
                             @enderror
                         </div>
                     </div>
+
+
                     <div class="mb-3 row">
                         <label for="NHTThanhTien" class="col-sm-2 col-form-label">Thành tiền</label>
                         <div class="col-sm-10">
@@ -57,40 +65,41 @@
                             @enderror
                         </div>
                     </div>
+
+
                     <div class="mb-3 row">
                         <label class="col-sm-2 col-form-label">Trạng thái</label>
                         <div class="col-sm-10">
                             <input type="radio" id="NHTTrangThai0" name="NHTTrangThai" value="0" 
-                                {{ $NHTCTHoaDon->NHTTrangThai == 0 ? 'checked' : '' }}>
+                                {{ $NHTHoaDon->NHTTrangThai == 0 ? 'checked' : '' }}>
                             <label for="NHTTrangThai0">Hiển thị</label>
                             &nbsp;
                             <input type="radio" id="NHTTrangThai1" name="NHTTrangThai" value="1" 
-                                {{ $NHTCTHoaDon->NHTTrangThai == 1 ? 'checked' : '' }}>
+                                {{ $NHTHoaDon->NHTTrangThai == 1 ? 'checked' : '' }}>
                             <label for="NHTTrangThai1">Khóa</label>
                         </div>
-                        
                     </div>
                 </div>
                 <div class="card-footer">
-                    <div class="modal" tabindex="-1">
+                    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title">Thông báo</h5>
+                              <h5 class="modal-title" id="confirmModalLabel">Thông báo</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <p>Bạn có chắc muốn thay đổi ?</p>
+                              <p>Bạn có chắc muốn thay đổi thông tin này?</p>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                              <button type="button" class="btn btn-primary">Lưu thay đổi</button>
+                              <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Lưu thay đổi</button>
-                    <a href="{{route('NHTadmins.NHTCTHoaDon.NHTCTList')}}" class="btn btn-secondary">Quay lại</a>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">Lưu thay đổi</button>
+                    <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTList') }}" class="btn btn-secondary">Quay lại</a>
                 </div>
             </div>
         </form>

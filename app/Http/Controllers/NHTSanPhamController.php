@@ -26,9 +26,8 @@ class NHTSanPhamController extends Controller
         return view('NHTadmins.NHTSanPham.NHTCreate', compact('nhtloaisps'));
     }
 
-
     // Create product submit
-    public function NHTcreateSubmit(Request $request,$id)
+    public function NHTcreateSubmit(Request $request)
     {
         $validatedData = $request->validate([
             'NHTMaSP' => 'required',
@@ -47,50 +46,47 @@ class NHTSanPhamController extends Controller
         $nhtsp->NHTSoLuong = $request->input('NHTSoLuong');
         $nhtsp->NHTMaLoai = $request->input('NHTMaLoai');
         $nhtsp->NHTTrangThai = $request->input('NHTTrangThai');
-        $nhtsp->NHTHinhAnh = $request->file('NHTHinhAnh')->store('images', 'public');
+
+        // Handle image upload
+        if ($request->hasFile('NHTHinhAnh')) {
+            $nhtsp->NHTHinhAnh = $request->file('NHTHinhAnh')->store('images', 'public');
+        }
+
         $nhtsp->save();
-        return redirect()->route('NHTadmins.NHTSanPham.NHTList',[$id])->with('Thông báo','Sửa thành công');
+        return redirect()->route('NHTadmins.NHTSanPham.NHTList')->with('success', 'Sản phẩm đã được tạo thành công');
     }
 
+    // Edit product
     public function NHTEdit($id)
-{
-    $nhtsp = NHT_SanPham::find($id);
-    $nhtloaisps = NHT_Loai_SP::all();  // Lấy tất cả các loại sản phẩm
-    
-    // Kiểm tra nếu không tìm thấy sản phẩm
-    if (!$nhtsp) {
-        return redirect()->route('NHTadmins.NHTSanPham.NHTList')
-            ->with('error', 'Sản phẩm không tồn tại.');
+    {
+        $nhtsp = NHT_SanPham::find($id);
+        $nhtloaisps = NHT_Loai_SP::all(); 
+        if (!$nhtsp) {
+            return redirect()->route('NHTadmins.NHTSanPham.NHTList')
+                ->with('error', 'Sản phẩm không tồn tại.');
+        }
+        return view('NHTadmins.NHTSanPham.NHTEdit', compact('nhtsp', 'nhtloaisps'));
     }
 
-    // Truyền biến $nhtsp và $nhtloaisps đến view
-    return view('NHTadmins.NHTSanPham.NHTEdit', compact('nhtsp', 'nhtloaisps'));
-}
+    // Edit product submit
+    public function NHTEditSubmit(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'NHTMaSP' => 'required',
+            'NHTTenSP' => 'required',
+            'NHTDonGia' => 'required',
+            'NHTSoLuong' => 'required',
+            'NHTMaLoai' => 'required',
+            'NHTHinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'NHTTrangThai' => 'required',
+        ]);
 
-
-public function NHTEditSubmit(Request $request, $id)
-{
-    // Xác thực dữ liệu từ form
-    $validatedData = $request->validate([
-        'NHTMaSP' => 'required',
-        'NHTTenSP' => 'required',
-        'NHTDonGia' => 'required',
-        'NHTSoLuong' => 'required',
-        'NHTMaLoai' => 'required',
-        'NHTHinhAnh' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'NHTTrangThai' => 'required',
-    ]);
-
-        // Tìm sản phẩm theo ID
         $nhtsp = NHT_SanPham::find($id);
-
-        // Nếu không tìm thấy sản phẩm
         if (!$nhtsp) {
             return redirect()->route('NHTadmins.NHTSanPham.NHTList')
                 ->with('error', 'Sản phẩm không tồn tại.');
         }
 
-        // Cập nhật thông tin sản phẩm
         $nhtsp->NHTMaSP = $request->NHTMaSP;
         $nhtsp->NHTTenSP = $request->NHTTenSP;
         $nhtsp->NHTDonGia = $request->NHTDonGia;
@@ -99,39 +95,29 @@ public function NHTEditSubmit(Request $request, $id)
         $nhtsp->NHTTrangThai = $request->NHTTrangThai;
 
         if ($request->hasFile('NHTHinhAnh')) {
-            // Tải file mới
-            $file = $request->file('NHTHinhAnh');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            
-            // Di chuyển file vào thư mục public
-            $file->move(public_path('images'), $filename);
-
-            // Xóa ảnh cũ (nếu có)
             if ($nhtsp->NHTHinhAnh) {
                 Storage::disk('public')->delete($nhtsp->NHTHinhAnh);
             }
 
-            // Cập nhật tên ảnh mới
-            $nhtsp->NHTHinhAnh = 'images/' . $filename;
+            $nhtsp->NHTHinhAnh = $request->file('NHTHinhAnh')->store('images', 'public');
         }
 
-        // Lưu lại dữ liệu đã cập nhật
+        // Save updated product
         $nhtsp->save();
 
         return redirect()->route('NHTadmins.NHTSanPham.NHTList')->with('success', 'Sản phẩm đã được cập nhật thành công');
-
     }
-
-
 
 
     public function NHTdelete($id)
     {
         $nhtsp = NHT_SanPham::find($id);
-        if ($nhtsp->NHTHinhAnh) {
+
+        if ($nhtsp->NHTHinhAnh && Storage::disk('public')->exists($nhtsp->NHTHinhAnh)) {
             Storage::disk('public')->delete($nhtsp->NHTHinhAnh);
         }
-        // Delete product entry
+
+        // Delete product
         $nhtsp->delete();
 
         return redirect()->route('NHTadmins.NHTSanPham.NHTList')->with('success', 'Xóa sản phẩm thành công');

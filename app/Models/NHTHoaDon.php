@@ -15,8 +15,7 @@ class NHTHoaDon extends Model
     ];
     public function NHTKhachHang()
     {
-        return $this->belongsTo(NHTKhachHang::class, 'NHTMaKH', 'id','NHTTenKH');
-    }
+        return $this->belongsTo(NHTKhachHang::class, 'NHTMaKH');  
 
-
+}
 }

@@ -4,7 +4,8 @@
 
 @section('content-body')
     <h1>Danh sách hóa đơn</h1>
-    <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTCreateSubmit') }}" class="btn btn-primary">Thêm mới</a>
+    <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTCreateSubmit') }}" class="btn btn-primary mb-3">Thêm mới</a>
+    
     <table class="table mt-4">
         <thead>
             <tr>
@@ -22,16 +23,20 @@
             @forelse ($NHTCTHoaDon as $item)
                 <tr>
                     <td class="text-center">{{ $loop->iteration }}</td>
-                    <td class="text-center">{{ $item->NHTMaHD }}</td>
-                    <td class="text-center">{{ $item->NHTKhachHang->NHTMaKH ?? 'Không xác định' }}</td>
-                    <td class="text-center">{{ $item->NHTNgayHD }}</td>
-                    <td class="text-center">{{ $item->NHTHoTenKH }}</td>
-                    <td class="text-center">{{ number_format($item->NHTTongTriGia, 0, ',', '.') }} đ</td>
+                    <td class="text-center">{{ $item->NHTHoaDonID }}</td>
+                    <td class="text-center">{{ $item->NHTSanPhamID }}</td>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($item->NHTNgayHD)->format('d/m/Y') }}</td>
+                    <td class="text-center">{{ $item->NHTHoTenKhach }}</td>
+                    <td class="text-center">{{ number_format($item->NHTThanhTien, 0, ',', '.') }} đ</td>
                     <td class="text-center">{{ $item->NHTTrangThai ? 'Kích hoạt' : 'Không kích hoạt' }}</td>
                     <td class="text-center">
-                        <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTEdit', $item->id) }}" class="btn btn-warning">Sửa</a>
-                        <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTDelete', $item->id) }}" class="btn btn-danger" 
-                            onclick="return confirm('Bạn có chắc muốn xóa không?')">Xóa</a>
+                        <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTEdit', $item->id) }}" class="btn btn-warning btn-sm">Sửa</a>
+                        
+                        <form action="{{ route('NHTadmins.NHTCTHoaDon.NHTCTDelete', $item->id) }}" method="post" style="display: inline-block;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa không?')">Xóa</button>
+                        </form>
                     </td>
                 </tr>
             @empty
