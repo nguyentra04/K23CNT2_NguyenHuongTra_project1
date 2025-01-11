@@ -3,7 +3,7 @@
 @section('title', 'Danh sách hóa đơn')
 
 @section('content-body')
-    <h1>Danh sách hóa đơn</h1>
+    <h1>Danh sách hóa đơn chi tiết </h1>
     <a href="{{ route('NHTadmins.NHTCTHoaDon.NHTCTCreateSubmit') }}" class="btn btn-primary mb-3">Thêm mới</a>
     
     <table class="table mt-4">
